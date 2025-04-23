@@ -1,0 +1,7 @@
+﻿-I"E:\01_MBD Diploma\07_System_ Modeling_Module\project\TPS_model"
+-I"E:\01_MBD Diploma\07_System_ Modeling_Module\project\TPS_model\TPS_MODEL_SIL_ert_rtw"
+-I"C:\Program Files\MATLAB\R2023a\extern\include"
+-I"C:\Program Files\MATLAB\R2023a\simulink\include"
+-I"C:\Program Files\MATLAB\R2023a\rtw\c\src"
+-I"C:\Program Files\MATLAB\R2023a\rtw\c\src\ext_mode\common"
+-I"C:\Program Files\MATLAB\R2023a\rtw\c\ert"
