@@ -1,8 +1,33 @@
-# Throttle Position Sensor (TPS) Model - SIL/MIL Design
+# Throttle Position Sensor (TPS) Model Design
 
-A Model-Based Development (MBD) project for designing and validating a Throttle Position Sensor (TPS) using **Software-in-the-Loop (SIL)** and **Model-in-the-Loop (MIL)** methodologies.
+A Model-Based Design (MBD) project for simulating and validating a Throttle Position Sensor (TPS) using **Software-in-the-Loop (SIL)** and **Model-in-the-Loop (MIL)** methodologies.
 
 ---
+
+## 📖 Overview
+The Throttle Position Sensor (TPS) is a critical component in automotive systems that monitors the throttle valve position in internal combustion engines. This project focuses on:
+- **MIL (Model-in-the-Loop):** Validating the TPS model in a simulated environment (e.g., Simulink).
+- **SIL (Software-in-the-Loop):** Generating embedded code from the model and testing it on a virtual platform.
+
+---
+
+## 🚀 Key Features
+- **Dynamic behavior modeling** of the TPS (e.g., voltage-angle relationship, hysteresis effects).
+- **Calibration interfaces** for sensor parameters (e.g., voltage range, linearity).
+- **Test harnesses** for SIL/MIL validation (e.g., step response, fault injection).
+- **Automated test cases** to verify compliance with automotive standards (e.g., ISO 26262).
+
+---
+
+## 🛠️ Tools Used
+- **Modeling:** MATLAB/Simulink, Stateflow
+- **Code Generation:** Embedded Coder (for SIL)
+- **Testing:** Simulink Test, MATLAB Unit Tests
+- **Version Control:** GitHub
+
+---
+
+
 
 ## 📂 Repository Structure
 TPS_model/
@@ -75,4 +100,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 ## 📧 Contact
 **Ahmed El Kerdawy**  
 GitHub: [@ahmedelkerdawy](https://github.com/ahmedelkerdawy)  
-Email: [your-email@example.com](mailto:your-email@example.com)
+
