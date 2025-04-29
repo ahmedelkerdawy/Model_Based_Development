@@ -1,76 +1,122 @@
-Permanent Magnet Synchronous Motor (PMSM) Control in Simulink
+# Permanent Magnet Synchronous Motor (PMSM) Control in Simulink  
+![Simulink PMSM Model](https://img.shields.io/badge/Simulink-R2023a-blue) ![License](https://img.shields.io/badge/License-MIT-green)  
 
-Advanced motor control system integrating flux, position, and speed estimation, ABC-to-Alpha-Beta transformation, and balanced three-phase voltage/current operation.
-🔍 Features
+This repository implements an advanced control system for a Permanent Magnet Synchronous Motor (PMSM) using MATLAB/Simulink. The model integrates rotor flux estimation, electrical position/speed observation, ABC-to-Alpha-Beta (Clarke) transformation, and balanced three-phase voltage/current operation.  
 
-    PMSM Mathematical Model:
+---
 
-        Voltage equations: vα=Riα−Lsdiαdt−ωmLriβvα​=Riα​−Ls​dtdiα​​−ωm​Lr​iβ​, vβ=Riβ−Lsdiβdt+ωmLriαvβ​=Riβ​−Ls​dtdiβ​​+ωm​Lr​iα​.
+## 📝 Table of Contents  
+- [Features](#-features)  
+- [Repository Structure](#-repository-structure)  
+- [Requirements](#-requirements)  
+- [Installation & Usage](#-installation--usage)  
+- [Key Equations](#-key-equations)  
+- [Results](#-results)  
+- [References](#-references)  
+- [License](#-license)  
 
-        Flux estimation: ψα=∫(vα−Riα)dtψα​=∫(vα​−Riα​)dt, ψβ=∫(vβ−Riβ)dtψβ​=∫(vβ​−Riβ​)dt.
+---
 
-        Torque calculation: Te=32P(ψαiβ−ψβiα)Te​=23​P(ψα​iβ​−ψβ​iα​).
+## 🌟 Features  
+- **PMSM Mathematical Model**:  
+  - Voltage equations in the α-β reference frame.  
+  - Flux and torque calculation using integrators and algebraic blocks.  
+- **ABC-to-Alpha-Beta Transformation**:  
+  - Clarke transformation with `2/3` scaling for amplitude invariance.  
+  - Balanced three-phase current generation (`I_A, I_B, I_C`).  
+- **Flux, Position, and Speed Observer**:  
+  - Rotor flux estimation using low-pass filtered integrators.  
+  - Position (`θ`) and speed (`ω_m`) derived from flux components.  
+- **Validation**:  
+  - Scopes for visualizing currents, fluxes, torque, and speed.  
+  - FFT analysis to confirm balanced three-phase operation.  
 
-    ABC-to-Alpha-Beta (Clarke) Transformation:
+---
 
-        Converts three-phase currents (IA,IB,ICIA​,IB​,IC​) to two-phase orthogonal components (iα,iβiα​,iβ​).
-
-        Matrix implementation with 2/32/3 scaling for amplitude invariance.
-
-    Flux, Position, and Speed Observer:
-
-        Estimates rotor flux (ψα,ψβψα​,ψβ​), electrical position (θ=arctan⁡(ψβ/ψα)θ=arctan(ψβ​/ψα​)), and speed (ωm=dθ/dtωm​=dθ/dt).
-
-        Low-pass filters to mitigate integrator drift.
-
-    Balanced Three-Phase System:
-
-        Simulated with Vpeak=12 VVpeak​=12V, Ipeak=2 AIpeak​=2A, ω=300 rad/sω=300rad/s.
-
-📂 Repository Structure
-
+## 📂 Repository Structure  
+   
 ├── PMSM_Model.slx             # Simulink model  
 ├── Parameters.m               # Motor constants (R, L_s, L_r, P, etc.)  
 ├── Results/                   # Scope outputs (currents, flux, torque, speed)  
 ├── README.md                  # Project documentation  
 └── References/                # Technical papers and equations  
 
-⚙️ Requirements
 
-    MATLAB/Simulink (R2021a or later).
+## ⚙️ Requirements  
+- **MATLAB/Simulink** (R2021a or later).  
+- **Simscape Electrical** (optional, for cross-verification).  
 
-    Simscape Electrical (for PMSM block validation, optional).
+---
 
-🚀 Usage
+## 🚀 Installation & Usage  
 
-    Clone the repository:
-    bash
+### 1. Clone the Repository  
+```bash  
+git clone https://github.com/your-username/PMSM-Control-Simulink.git  
+cd PMSM-Control-Simulink
 
-    git clone https://github.com/your-username/PMSM-Control-Simulink.git  
+### 2. Open the Simulink Model
 
-    Open PMSM_Model.slx in Simulink.
+    Launch MATLAB and open PMSM_Model.slx.
 
-    Run Parameters.m to load constants (R=1 ΩR=1Ω, Ls=0.01 HLs​=0.01H, P=2P=2, etc.).
+### 3. Set Parameters
 
-    Simulate and visualize results using built-in scopes:
+    Run Parameters.m to load motor constants
+R = 1;          % Stator resistance (Ω)  
+L_s = 0.01;     % Stator inductance (H)  
+L_r = 0.005;    % Rotor inductance (H)  
+P = 2;          % Number of pole pairs  
+V_peak = 12;    % Phase voltage peak (V)  
+I_peak = 2;     % Phase current peak (A)
 
-        Phase currents (IA,IB,ICIA​,IB​,IC​).
+### 4. Simulate
 
-        αα-ββ currents and fluxes.
+    Click Run in Simulink.
 
-        Estimated torque (TeTe​), position (θθ), and speed (ωmωm​).
+    Use built-in scopes to monitor:
 
-📊 Results
+        Three-phase currents (I_A, I_B, I_C).
 
-    Transient Response: Analysis of motor startup and load changes.
+        α-β currents and fluxes (i_α, i_β, ψ_α, ψ_β).
 
-    Flux Estimation: Validation of ψα/ψβψα​/ψβ​ convergence.
+        Estimated torque (T_e), position (θ), and speed (ω_m).
 
-    Balanced System: FFT analysis confirming harmonic-free three-phase waveforms.
+## 🔑 Key Equations
+Voltage Equations (α-β Frame)
+vα=Riα−Lsdiαdt−ωmLriβ
+vα​=Riα​−Ls​dtdiα​​−ωm​Lr​iβ​
+vβ=Riβ−Lsdiβdt+ωmLriα
+vβ​=Riβ​−Ls​dtdiβ​​+ωm​Lr​iα​
+Flux Estimation
+ψα=∫(vα−Riα) dt
+ψα​=∫(vα​−Riα​)dt
+ψβ=∫(vβ−Riβ) dt
+ψβ​=∫(vβ​−Riβ​)dt
+Torque Calculation
+Te=32P(ψαiβ−ψβiα)
+Te​=23​P(ψα​iβ​−ψβ​iα​)
+ABC-to-Alpha-Beta Transformation
+[iαiβ]=23[1−12−12032−32][IAIBIC]
+[iα​iβ​​]=32​[10​−21​23
+​​​−21​−23
+​​​]
+​IA​IB​IC​​
+​
+## 📊 Results
 
-📚 References
+    Transient Response:
+    Currents and Torque
+
+    Flux Estimation:
+    Flux Waves
+
+    Balanced Three-Phase Currents:
+    FFT Analysis
+
+## 📚 References
 
     Krause, P. C. Analysis of Electric Machinery and Drive Systems.
 
     Bose, B. K. Modern Power Electronics and AC Drives.
-    ![image](https://github.com/user-attachments/assets/7b034235-1661-45ee-94cb-8c36f16cc61a)
+
+    MathWorks Documentation: PMSM Modeling 
