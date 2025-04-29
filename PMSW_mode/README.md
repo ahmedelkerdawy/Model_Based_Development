@@ -59,7 +59,7 @@ cd PMSM-Control-Simulink
 
     Launch MATLAB and open PMSM_Model.slx.
 
-### 3. Set Parameters
+3. Set Parameters
 
     Run Parameters.m to load motor constants
 R = 1;          % Stator resistance (Ω)  
@@ -69,7 +69,7 @@ P = 2;          % Number of pole pairs
 V_peak = 12;    % Phase voltage peak (V)  
 I_peak = 2;     % Phase current peak (A)
 
-### 4. Simulate
+4. Simulate
 
     Click Run in Simulink.
 
@@ -81,7 +81,7 @@ I_peak = 2;     % Phase current peak (A)
 
         Estimated torque (T_e), position (θ), and speed (ω_m).
 
-## 🔑 Key Equations
+🔑 Key Equations
 Voltage Equations (α-β Frame)
 vα=Riα−Lsdiαdt−ωmLriβ
 vα​=Riα​−Ls​dtdiα​​−ωm​Lr​iβ​
@@ -102,7 +102,7 @@ ABC-to-Alpha-Beta Transformation
 ​​​]
 ​IA​IB​IC​​
 ​
-## 📊 Results
+📊 Results
 
     Transient Response:
     Currents and Torque
@@ -113,7 +113,7 @@ ABC-to-Alpha-Beta Transformation
     Balanced Three-Phase Currents:
     FFT Analysis
 
-## 📚 References
+📚 References
 
     Krause, P. C. Analysis of Electric Machinery and Drive Systems.
 
